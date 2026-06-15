@@ -1,12 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Dashboard - {{ link.title }}{% endblock %}
+
 {% block content %}
 <section class="card">
   <a href="/" class="small-link">← Create another</a>
+
   <div class="dash-head">
-    {% if link.thumbnail_url %}<img class="dash-thumb" src="{{ link.thumbnail_url }}" alt="thumbnail" />{% endif %}
+    {% if link.thumbnail_url %}
+      <img class="dash-thumb" src="{{ link.thumbnail_url }}" alt="Video thumbnail" />
+    {% endif %}
+
     <div>
-      <div class="badge">{{ link.ai_pack.ai_mode }}{% if link.ai_pack.transcript_used %} + transcript{% endif %}</div>
+      {% if link.ai_pack.ai_mode == "openai" %}
+        <div class="badge">
+          AI generated{% if link.ai_pack.transcript_used %} + transcript{% endif %}
+        </div>
+      {% else %}
+        <div class="badge">
+          Smart copy
+        </div>
+      {% endif %}
+
       <h1>{{ link.title }}</h1>
       <p class="muted">{{ link.author_name }}</p>
     </div>
@@ -15,31 +29,67 @@
   <label>Your smart link</label>
   <div class="copy-box">
     <input id="publicUrl" value="{{ public_url }}" readonly />
-    <button onclick="navigator.clipboard.writeText(document.getElementById('publicUrl').value); this.innerText='Copied';">Copy</button>
+    <button onclick="navigator.clipboard.writeText(document.getElementById('publicUrl').value); this.innerText='Copied';">
+      Copy
+    </button>
   </div>
 </section>
 
 <section class="grid">
-  <div class="card stat"><strong>{{ counts.get('page_view', 0) }}</strong><span>Page views</span></div>
-  <div class="card stat"><strong>{{ counts.get('open_app_click', 0) }}</strong><span>App-open clicks</span></div>
-  <div class="card stat"><strong>{{ counts.get('browser_fallback_click', 0) }}</strong><span>Browser fallback</span></div>
-  <div class="card stat"><strong>{{ link.ai_pack.friction_score }}/100</strong><span>Friction score</span></div>
+  <div class="card stat">
+    <strong>{{ counts.get('page_view', 0) }}</strong>
+    <span>Total visits</span>
+  </div>
+
+  <div class="card stat">
+    <strong>{{ counts.get('open_app_click', 0) }}</strong>
+    <span>YouTube app opens</span>
+  </div>
+
+  <div class="card stat">
+    <strong>{{ counts.get('browser_fallback_click', 0) }}</strong>
+    <span>Browser opens</span>
+  </div>
+
+  <div class="card stat">
+    <strong>{{ link.ai_pack.friction_score }}/100</strong>
+    <span>Friction score</span>
+  </div>
 </section>
 
 <section class="card">
-  <h2>AI v3 extraction</h2>
+  <h2>AI video insights</h2>
+
   <p><strong>Category:</strong> {{ link.ai_pack.content_category }}</p>
   <p><strong>Summary:</strong> {{ link.ai_pack.summary }}</p>
   <p><strong>Goal:</strong> {{ link.ai_pack.goal }}</p>
-  <p><strong>Transcript used:</strong> {{ 'Yes' if link.ai_pack.transcript_used else 'No' }}</p>
-  {% if link.transcript_status.reason and not link.ai_pack.transcript_used %}<p class="muted">Transcript note: {{ link.transcript_status.reason }}</p>{% endif %}
+
+  <p>
+    <strong>Transcript:</strong>
+    {% if link.ai_pack.transcript_used %}
+      Used to improve the AI copy
+    {% else %}
+      Not available for this video
+    {% endif %}
+  </p>
 </section>
 
 <section class="card">
   <h2>Generated landing copy</h2>
-  <div class="quote"><strong>{{ link.ai_pack.headline }}</strong><br/>{{ link.ai_pack.description }}</div>
+
+  <div class="quote">
+    <strong>{{ link.ai_pack.headline }}</strong>
+    <br />
+    {{ link.ai_pack.description }}
+  </div>
+
   <h3>CTA variants</h3>
-  <ol>{% for cta in link.ai_pack.cta_variants %}<li>{{ cta }}</li>{% endfor %}</ol>
+  <ol>
+    {% for cta in link.ai_pack.cta_variants %}
+      <li>{{ cta }}</li>
+    {% endfor %}
+  </ol>
+
   <h3>Source-specific copy</h3>
   <ul>
     <li><strong>Instagram:</strong> {{ link.ai_pack.source_specific_copy.instagram }}</li>
@@ -50,20 +100,39 @@
 
 <section class="card">
   <h2>AI recommendations</h2>
-  <ul>{% for item in link.ai_pack.recommendations %}<li>{{ item }}</li>{% endfor %}</ul>
+
+  <ul>
+    {% for item in link.ai_pack.recommendations %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
 </section>
 
 <section class="card">
-  <h2>Recent events</h2>
+  <h2>Recent activity</h2>
+
   {% if events %}
-  <table>
-    <thead><tr><th>Event</th><th>Time</th><th>Extra</th></tr></thead>
-    <tbody>
-      {% for event in events %}
-        <tr><td>{{ event.event_type }}</td><td>{{ event.created_at }}</td><td><code>{{ event.extra }}</code></td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% else %}<p class="muted">No events yet.</p>{% endif %}
+    <table>
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th>Time</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for event in events %}
+          <tr>
+            <td>{{ event.event_type }}</td>
+            <td>{{ event.created_at }}</td>
+            <td><code>{{ event.extra }}</code></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">No clicks tracked yet. Share your smart link to start collecting analytics.</p>
+  {% endif %}
 </section>
 {% endblock %}

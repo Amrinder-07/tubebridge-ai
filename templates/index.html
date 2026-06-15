@@ -1,8 +1,12 @@
 {% extends "base.html" %}
-{% block title %}AI YouTube Bio Link Optimizer{% endblock %}
+{% block title %}TubeBridge AI | YouTube Bio Link Optimizer{% endblock %}
 {% block content %}
 <section class="hero">
-  <div class="badge">AI v3 MVP</div>
+  <div class="brand">
+    <div class="brand-logo">▶</div>
+    <span>TubeBridge AI</span>
+  </div>
+  <span class="pill">For YouTube Creators</span>
   <h1>AI-powered YouTube bio links for creators</h1>
   <p class="lead">Paste a YouTube link. The app extracts video context, creates AI landing copy, tests CTA variants, scores friction, and routes desktop visitors straight to YouTube.</p>
 </section>
@@ -27,7 +31,6 @@
 
     <button type="submit">Generate AI smart link</button>
   </form>
-  <p class="muted">AI works best when <code>OPENAI_API_KEY</code> is set in your <code>.env</code>. Without it, the app uses built-in fallback copy.</p>
 </section>
 
 {% if links %}
