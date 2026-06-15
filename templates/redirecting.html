@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Opening YouTube...{% endblock %}
+{% block content %}
+<section class="card center">
+  <h1>Opening YouTube...</h1>
+  <p>Desktop visitors go straight to YouTube without seeing a landing page.</p>
+  <a class="button" href="{{ destination }}">Continue to YouTube</a>
+</section>
+<script>
+  setTimeout(() => { window.location.href = {{ destination|tojson }}; }, 500);
+</script>
+{% endblock %}

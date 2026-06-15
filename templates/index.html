@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}AI YouTube Bio Link Optimizer{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="badge">AI v3 MVP</div>
+  <h1>AI-powered YouTube bio links for creators</h1>
+  <p class="lead">Paste a YouTube link. The app extracts video context, creates AI landing copy, tests CTA variants, scores friction, and routes desktop visitors straight to YouTube.</p>
+</section>
+
+<section class="card">
+  <h2>Create a smart link</h2>
+  <form action="/create" method="post" class="form">
+    <label>YouTube video, Shorts, or youtu.be link</label>
+    <input name="youtube_url" required placeholder="https://youtu.be/VIDEO_ID" />
+
+    <label>Custom slug, optional</label>
+    <input name="slug" placeholder="my-latest-video" />
+
+    <label>Creator goal</label>
+    <select name="goal">
+      <option value="subscribers">More subscribers</option>
+      <option value="views">More views</option>
+      <option value="comments">More comments</option>
+      <option value="likes">More likes</option>
+      <option value="playlist_watch">More playlist/watch time</option>
+    </select>
+
+    <button type="submit">Generate AI smart link</button>
+  </form>
+  <p class="muted">AI works best when <code>OPENAI_API_KEY</code> is set in your <code>.env</code>. Without it, the app uses built-in fallback copy.</p>
+</section>
+
+{% if links %}
+<section class="card">
+  <h2>Recent links</h2>
+  <div class="link-list">
+    {% for link in links %}
+      <a class="row" href="/dashboard/{{ link.slug }}">
+        {% if link.thumbnail_url %}<img src="{{ link.thumbnail_url }}" alt="thumbnail" />{% endif %}
+        <div>
+          <strong>{{ link.title }}</strong>
+          <span>{{ base_url }}/l/{{ link.slug }}</span>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

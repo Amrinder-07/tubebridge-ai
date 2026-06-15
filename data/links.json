@@ -1,0 +1,102 @@
+[
+  {
+    "id": "d2jb49ykvdci",
+    "slug": "watch-new-video",
+    "video_id": "UnaBIlzhyWs",
+    "original_url": "https://www.youtube.com/watch?v=UnaBIlzhyWs",
+    "youtube_app_url": "youtube://watch?v=UnaBIlzhyWs",
+    "android_intent_url": "intent://www.youtube.com/watch?v=UnaBIlzhyWs#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DUnaBIlzhyWs;end",
+    "title": "This Might Be the Easiest Camera for Content Creation 🎥",
+    "author_name": "Amrndrxmatic",
+    "thumbnail_url": "https://i.ytimg.com/vi/UnaBIlzhyWs/hqdefault.jpg",
+    "provider_name": "YouTube",
+    "goal": "views",
+    "ai_pack": {
+      "content_category": "YouTube video",
+      "summary": "A YouTube video from Amrndrxmatic: This Might Be the Easiest Camera for Content Creation 🎥",
+      "goal": "Get more viewers to open YouTube where they can like, comment, and subscribe.",
+      "headline": "Watch “This Might Be the Easiest Camera for Content Creation 🎥” on YouTube",
+      "description": "Instagram may open this inside its browser, where viewers are often not signed in. Tap below to open YouTube for the best experience.",
+      "cta_variants": [
+        "Open in YouTube App",
+        "Open YouTube to Like & Subscribe",
+        "Watch on YouTube"
+      ],
+      "source_specific_copy": {
+        "instagram": "Instagram opened this in its browser. Tap below to open YouTube, where you’re more likely to already be signed in.",
+        "tiktok": "TikTok may keep this inside its browser. Tap below to open YouTube for likes, comments, and subscribing.",
+        "default_mobile": "Open this in the YouTube app for the best viewing experience."
+      },
+      "friction_score": 72,
+      "friction_reasons": [
+        "Social apps often open links inside an in-app browser.",
+        "Viewers may not be signed into YouTube inside that browser.",
+        "A user-tapped button usually works better than an automatic redirect from in-app browsers."
+      ],
+      "recommendations": [
+        "Use a clear CTA that mentions YouTube, likes, comments, or subscribing.",
+        "Keep desktop visitors on auto-redirect so they are not interrupted.",
+        "A/B test at least two CTA variants from Instagram traffic."
+      ],
+      "transcript_used": false,
+      "ai_mode": "fallback_rules",
+      "ai_error": "Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope************here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api",
+      "selected_goal": "views"
+    },
+    "transcript_status": {
+      "available": false,
+      "reason": "no element found: line 1, column 0"
+    },
+    "created_at": "2026-06-10T16:22:24.872749+00:00"
+  },
+  {
+    "id": "k985cqae6418",
+    "slug": "watch-new-video-ycay7",
+    "video_id": "UnaBIlzhyWs",
+    "original_url": "https://www.youtube.com/watch?v=UnaBIlzhyWs",
+    "youtube_app_url": "youtube://watch?v=UnaBIlzhyWs",
+    "android_intent_url": "intent://www.youtube.com/watch?v=UnaBIlzhyWs#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DUnaBIlzhyWs;end",
+    "title": "This Might Be the Easiest Camera for Content Creation 🎥",
+    "author_name": "Amrndrxmatic",
+    "thumbnail_url": "https://i.ytimg.com/vi/UnaBIlzhyWs/hqdefault.jpg",
+    "provider_name": "YouTube",
+    "goal": "views",
+    "ai_pack": {
+      "content_category": "YouTube video",
+      "summary": "A YouTube video from Amrndrxmatic: This Might Be the Easiest Camera for Content Creation 🎥",
+      "goal": "Get more viewers to open YouTube where they can like, comment, and subscribe.",
+      "headline": "Watch “This Might Be the Easiest Camera for Content Creation 🎥” on YouTube",
+      "description": "Instagram may open this inside its browser, where viewers are often not signed in. Tap below to open YouTube for the best experience.",
+      "cta_variants": [
+        "Open in YouTube App",
+        "Open YouTube to Like & Subscribe",
+        "Watch on YouTube"
+      ],
+      "source_specific_copy": {
+        "instagram": "Instagram opened this in its browser. Tap below to open YouTube, where you’re more likely to already be signed in.",
+        "tiktok": "TikTok may keep this inside its browser. Tap below to open YouTube for likes, comments, and subscribing.",
+        "default_mobile": "Open this in the YouTube app for the best viewing experience."
+      },
+      "friction_score": 72,
+      "friction_reasons": [
+        "Social apps often open links inside an in-app browser.",
+        "Viewers may not be signed into YouTube inside that browser.",
+        "A user-tapped button usually works better than an automatic redirect from in-app browsers."
+      ],
+      "recommendations": [
+        "Use a clear CTA that mentions YouTube, likes, comments, or subscribing.",
+        "Keep desktop visitors on auto-redirect so they are not interrupted.",
+        "A/B test at least two CTA variants from Instagram traffic."
+      ],
+      "transcript_used": false,
+      "ai_mode": "fallback_rules",
+      "ai_error": "Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope************here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api",
+      "selected_goal": "views"
+    },
+    "transcript_status": {
+      "available": false,
+      "reason": "no element found: line 1, column 0"
+    },
+    "created_at": "2026-06-15T03:00:55.176086+00:00"
+  }
+]
