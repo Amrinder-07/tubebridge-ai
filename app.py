@@ -1,3 +1,4 @@
+# TubeBridge AI - AI-powered YouTube bio link optimizer
 import json
 import os
 import random
