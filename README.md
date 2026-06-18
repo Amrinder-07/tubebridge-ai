@@ -1,6 +1,6 @@
-# OpenInApp AI v3 — AI-powered YouTube Bio Link Optimizer
+# TubeBridge AI — AI-powered YouTube Bio Link Optimizer
 
-This is a Python Flask MVP for smart YouTube bio links.
+This is a Python Flask app for AI-powered YouTube bio links.
 
 ## What it does
 
@@ -26,14 +26,12 @@ This is a Python Flask MVP for smart YouTube bio links.
 ## Run locally on Mac
 
 ```bash
-cd ~/Downloads
-unzip openinapp-ai-v3.zip
-cd openinapp-ai-v3
+cd ~/Downloads/tubebridge-ai
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 cp .env.example .env
-python app.py
+python3 app.py
 ```
 
 Open:
@@ -45,7 +43,7 @@ http://127.0.0.1:8000
 Use a different port:
 
 ```bash
-python app.py 8001
+python3 app.py 8001
 ```
 
 ## Enable AI
@@ -65,8 +63,7 @@ If no API key is set, the app still works, but it uses fallback copy instead of 
 - `app.py` — main Flask app
 - `templates/` — web pages
 - `static/styles.css` — styling
-- `data/links.json` — local smart links
-- `data/events.json` — local analytics events
+- `data/` — local JSON storage folder. The app creates link and event files during local testing.
 
 ## Important note
 
