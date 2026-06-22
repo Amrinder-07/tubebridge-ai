@@ -1,51 +1,81 @@
 {% extends "base.html" %}
 {% block title %}{{ link.ai_pack.headline or link.title }}{% endblock %}
+
 {% block content %}
 <section class="mobile-page">
   {% if link.thumbnail_url %}
     <img class="thumb" src="{{ link.thumbnail_url }}" alt="{{ link.title }} thumbnail" />
   {% endif %}
+
   <div class="badge">{{ link.ai_pack.content_category }}</div>
+
   <h1>{{ link.ai_pack.headline }}</h1>
+
+  <div class="actions primary-actions">
+    {% if ctx.is_android %}
+      <a class="button" data-event="open_app_click" href="{{ link.android_intent_url }}">
+        {{ selected_cta }}
+      </a>
+    {% else %}
+      <a class="button" data-event="open_app_click" href="{{ link.youtube_app_url }}">
+        {{ selected_cta }}
+      </a>
+    {% endif %}
+  </div>
+
   <p class="lead">{{ source_copy or link.ai_pack.description }}</p>
 
   {% if ctx.is_instagram or ctx.is_tiktok or ctx.is_facebook %}
     <div class="warning">
       <strong>In-app browser detected.</strong>
-      <span>This social app may keep YouTube signed out. Tap the button below to try opening the YouTube app.</span>
+      <span>This social app may keep YouTube signed out. Tap the button above to try opening the YouTube app.</span>
     </div>
   {% endif %}
 
-  <div class="actions">
-    {% if ctx.is_android %}
-      <a class="button" data-event="open_app_click" href="{{ link.android_intent_url }}">{{ selected_cta }}</a>
-    {% else %}
-      <a class="button" data-event="open_app_click" href="{{ link.youtube_app_url }}">{{ selected_cta }}</a>
-    {% endif %}
-    <a class="button secondary" data-event="browser_fallback_click" href="{{ link.original_url }}">Open in browser instead</a>
-    <button class="button ghost" id="copyBtn">Copy YouTube link</button>
+  <div class="actions secondary-actions">
+    <a class="button secondary" data-event="browser_fallback_click" href="{{ link.original_url }}">
+      Open in browser instead
+    </a>
+
+    <button class="button ghost" id="copyBtn">
+      Copy YouTube link
+    </button>
   </div>
 
   <details class="helper">
     <summary>Button didn’t open the YouTube app?</summary>
-    <p>Tap the menu in your social app browser and choose <strong>Open in browser</strong>, then open YouTube from there. App opening is not guaranteed because Instagram, TikTok, browsers, and phone settings can block it.</p>
+    <p>
+      Tap the menu in your social app browser and choose <strong>Open in browser</strong>,
+      then open YouTube from there. App opening is not guaranteed because Instagram,
+      TikTok, browsers, and phone settings can block it.
+    </p>
   </details>
-
-  <div class="ai-panel">
-    <h3>AI friction score: {{ link.ai_pack.friction_score }}/100</h3>
-    <ul>
-      {% for reason in link.ai_pack.friction_reasons %}<li>{{ reason }}</li>{% endfor %}
-    </ul>
-  </div>
 </section>
+
 <script>
 const linkId = {{ link.id|tojson }};
-function logEvent(eventType, extra={}) {
-  fetch('/api/event', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({link_id: linkId, event_type: eventType, extra})}).catch(()=>{});
+
+function logEvent(eventType, extra = {}) {
+  fetch('/api/event', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      link_id: linkId,
+      event_type: eventType,
+      extra
+    })
+  }).catch(() => {});
 }
+
 document.querySelectorAll('[data-event]').forEach(el => {
-  el.addEventListener('click', () => logEvent(el.dataset.event, {cta: {{ selected_cta|tojson }}, variant_index: {{ variant_index }} }));
+  el.addEventListener('click', () => {
+    logEvent(el.dataset.event, {
+      cta: {{ selected_cta|tojson }},
+      variant_index: {{ variant_index }}
+    });
+  });
 });
+
 document.getElementById('copyBtn').addEventListener('click', async () => {
   await navigator.clipboard.writeText({{ link.original_url|tojson }});
   logEvent('copy_link_click');

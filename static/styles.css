@@ -41,3 +41,11 @@
     padding: 24px;
   }
 }
+.primary-actions {
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+
+.secondary-actions {
+  margin-top: 22px;
+}
